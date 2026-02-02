@@ -46,8 +46,8 @@ jobs:
         with:
           context: .
           push: true
-          platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:latest
+          platforms: linux/arm64
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:arm64
 
       # 6. EC2에 배포 (SSH 접속 후 실행)
       - name: Deploy to EC2
@@ -61,9 +61,8 @@ jobs:
             sudo docker stop cloud-app || true
             sudo docker rm cloud-app || true
             # 최신 이미지 풀
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:latest
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:arm64
             # 새 컨테이너 실행 (프로필 prod 적용)
             sudo docker run -d --name cloud-app \
-              -p 8080:8080 \
-              -e SPRING_PROFILES_ACTIVE=prod \
-              ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:latest
+            -p 8080:8080 \
+            ${{ secrets.DOCKERHUB_USERNAME }}/cloud-app:arm64

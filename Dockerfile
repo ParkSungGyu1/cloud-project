@@ -1,5 +1,5 @@
 # 1. Java 17 환경 (사용 중인 버전 확인)
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk-focal
 
 # 2. 작업 디렉토리 설정
 WORKDIR /app

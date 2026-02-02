@@ -27,4 +27,10 @@ public class FileController {
         URL url = s3Service.getDownloadUrl(key);
         return ResponseEntity.ok(new FileDownloadUrlResponse(url.toString()));
     }
+
+    @GetMapping("/files/download-url/cloudfront")
+    public ResponseEntity<FileDownloadUrlResponse> getDownloadUrlWithCloudFront(@RequestParam String key) {
+        String url = s3Service.getDownloadUrlWithCloudFront(key); // ✅ 이제 CloudFront Signed URL
+        return ResponseEntity.ok(new FileDownloadUrlResponse(url));
+    }
 }

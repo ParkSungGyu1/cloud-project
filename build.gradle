@@ -32,6 +32,8 @@ dependencies {
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-parameter-store:3.1.1'
     implementation 'io.awspring.cloud:spring-cloud-aws-starter-s3:3.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation("com.amazonaws:aws-java-sdk-cloudfront:1.12.780")
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

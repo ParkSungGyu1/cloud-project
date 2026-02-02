@@ -1,5 +1,6 @@
 package com.example.cloud.s3;
 
+import com.example.cloud.cloudfront.CloudFrontSignedUrlService;
 import io.awspring.cloud.s3.S3Template;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +19,7 @@ public class S3Service {
     private static final Duration PRESIGNED_URL_EXPIRATION = Duration.ofMinutes(10);
 
     private final S3Template s3Template;
+    private final CloudFrontSignedUrlService cloudFrontSignedUrlService;
 
     @Value("${spring.cloud.aws.s3.bucket}")
     private String bucket;
@@ -35,5 +37,10 @@ public class S3Service {
 
     public URL getDownloadUrl(String key) {
         return s3Template.createSignedGetURL(bucket, key, PRESIGNED_URL_EXPIRATION);
+    }
+
+
+    public String getDownloadUrlWithCloudFront(String key) {
+        return cloudFrontSignedUrlService.createSignedUrl(key, PRESIGNED_URL_EXPIRATION);
     }
 }

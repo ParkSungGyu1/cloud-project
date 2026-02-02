@@ -15,7 +15,7 @@ public class TeamInfoController {
 
     @PostMapping("/api/members")
     public TeamInfoResponseDto saveMember(@RequestBody TeamInfoRequestDto requestDto){
-        log.info("[API-Logging] = 멤버생성 요청 발생");
+        log.info("[API-Logging] = 멤버생성 요청 발생했습니다.");
         return infoService.saveMember(requestDto);
     }
 
